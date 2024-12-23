@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camera Selection Order</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <!-- Include html2canvas from CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3.2.0/dist/email.min.js"></script>
+</head>
+<body>
+    <header>
+        <img src="./img/logo.jpg">
+        <h1>www.velvu.in</h1>
+        <nav>
+            <!-- Navigation links -->
+        </nav>
+    </header>
+
+    <main>
+        <section id="selection-form">
+            <!-- Form for camera selection -->
+            <form id="camera-form">
+                <!-- Step 1: Housing Type -->
+                <label for="housing-type">Housing Type</label>
+                <select id="housing-type" name="housing-type">
+                    <option value="dome">Dome</option>
+                    <option value="bullet">Bullet</option>
+                </select>
+
+                <!-- Step 2: Camera Type -->
+                <label for="camera-type">Camera Type</label>
+                <select id="camera-type" name="camera-type">
+                    <option value="HD">Select</option>
+                    <option value="HD">HD</option>
+                    <option value="IP">IP</option>
+                    <option value="standalone">Standalone Camera</option>
+                    <option value="special">Special Camera</option>
+                </select>
+
+                <!-- Dynamic Camera Type 2, depending on Camera Type -->
+                <div id="camera-type-2-container"></div>
+
+                <!-- Step 4: Mega Pixel -->
+                <label for="megapixel">Mega Pixel</label>
+                <select id="megapixel" name="megapixel">
+                    <!-- Options will be dynamically populated -->
+                    <option value="1">Select</option>
+                </select>
+
+                <!-- Step 5: Audio (Yes/No) -->
+                <label for="audio">Audio</label>
+                <select id="audio" name="audio">
+                    <option value="no">No</option>
+                    <option value="yes">Yes</option>
+                </select>
+                 <!-- Step 3: Camera Options for Two-Way Audio -->
+                <div id="audio-options" class="hidden">
+                    <label for="audio-type">Speaker Type</label>
+                    <select id="audio-type" name="audio-type">
+                        <option value="inbuilt">In-built Speaker</option>
+                        <option value="external">External Speaker</option>
+                    </select>
+                </div>
+
+                <!-- Step 6: Night Vision -->
+                <label for="night-vision">Night Vision</label>
+                <select id="night-vision" name="night-vision">
+                    <option value="normal">Normal</option>
+                    <option value="dark-light">Dark Light</option>
+                    <option value="smart-dual-light">Smart Dual Light</option>
+                    <option value="full-color">24 x 7 Full Color</option>
+                </select>
+
+                <!-- Step 7: PCB -->
+                <label for="pcb">PCB</label>
+                <select id="pcb" name="pcb">
+                    <!-- Options will be dynamically populated -->
+                </select>
+
+                <!-- Step 8: Lens mm -->
+                <label for="lens-mm">Lens (mm)</label>
+                <select id="lens-mm" name="lens-mm">
+                    <!-- Options will be dynamically populated -->
+                </select>
+
+                <!-- Step 9: Lens (MP) -->
+                <label for="lens-mp">Lens (MP)</label>
+                <select id="lens-mp" name="lens-mp">
+                    <option value="3mp">3MP</option>
+                    <option value="4mp">4MP</option>
+                    <option value="5mp">5MP</option>
+                    <option value="8mp">8MP</option>
+                </select>
+
+                <!-- Step 10: Lens Model -->
+                <label for="lens-model">Lens Model</label>
+                <select id="lens-model" name="lens-model">
+                    <!-- Options will be dynamically populated -->
+                </select>
+
+                <!-- Step 11: Body Type -->
+                <label for="body-type">Body Type</label>
+                <select id="body-type" name="body-type">
+                    <option value="plastic">Plastic</option>
+                    <option value="metal">Metal</option>
+                    <option value="half-metal">Half-metal</option>
+                    <option value="front-metal">Front-metal</option>
+                </select>
+
+                <!-- Step 12: PoE Type (only for IP) -->
+                <div id="poe-type-container" class="hidden">
+                    <label for="poe-type">PoE Type</label>
+                    <select id="poe-type" name="poe-type">
+                        <option value="poe-board">PoE Board</option>
+                        <option value="poe-cable">PoE Cable</option>
+                    </select>
+                </div>
+
+                <!-- Step 13: Warranty -->
+                <label for="warranty">Warranty</label>
+                <select id="warranty" name="warranty">
+                    <option value="13-repair">13 months Repair</option>
+                    <option value="25-repair">25 months Repair</option>
+                    <option value="13-replacement">13 months Replacement</option>
+                    <option value="13-replacement-12-repair">13 months Replacement + 12 months Repair</option>
+                </select>
+
+                <!-- Additional options -->
+                <h3>Additional Options</h3>
+                <label><input type="checkbox" name="silica-gel"> Silica Gel</label>
+                <label><input type="checkbox" name="drill-template"> Drill Template</label>
+                <label><input type="checkbox" name="screw-packet"> Screw Packet</label>
+                <label><input type="checkbox" name="waterproof-cap"> Waterproof Cap</label>
+                <label><input type="checkbox" name="user-manual"> User Manual</label>
+                <label><input type="checkbox" name="lamination"> Lamination</label>
+                <label><input type="checkbox" name="housing-logo"> Housing Logo Print</label>
+                <label><input type="checkbox" name="box-logo"> Box Logo Print</label>
+                <label><input type="checkbox" name="eva-pad"> EVA Pad</label>
+
+                <!-- images-->
+                 <div id="imgs">
+                    <img src="./img/dom1.jpeg" alt="image1" width="40%" class="unselected">
+                    <img src="./img/dom1.jpeg" alt="image2" width="40%" class="unselected">
+                 </div>
+
+                <!-- Quantity and Price Section -->
+                <label for="quantity">Quantity</label>
+                <input type="number" id="quantity" name="quantity" min="1" value="1">
+
+                <label for="company">Company Name</label>
+                <input type="text" id="company" name="company" placeholder="e.g. Open AI, NVIDIA">
+                
+                <label for="logo-upload">Logo</label>
+                <input type="file" id="logo-upload" accept="image/*">
+                
+                <p id="total-price">Total: $0</p>
+
+                <!-- Submit Order Button -->
+                <button type="submit">Submit Order</button>
+            </form>
+        </section>
+
+
+         <!-- Invoice Section (Initially hidden) -->
+         <section id="invoice-section" style="display:none;">
+            <br>
+            <div class="company-info">
+                <h1>Camera Company Inc.</h1>
+                <p>1234 Camera St.</p>
+                <p>City, State, ZIP</p>
+                <p>Email: info@cameracompany.com</p>
+                <p>Phone: (123) 456-7890</p>
+            </div>
+            <div class="invoice-details">
+                <p><strong>Invoice Number:</strong> 001234</p>
+                <p><strong>Date:</strong> October 1, 2023</p>
+            </div>
+            <div id="invoice-details">
+                <!-- Invoice content will be dynamically populated here -->
+            </div>
+            <button id="download-invoice" style="display:none;">Download Invoice</button>
+        </section>
+
+
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Camera Co. All rights reserved.</p>
+        <button onclick="showTermsConditions()">Terms & Conditions</button>
+        <button onclick="showDisclaimer()">Disclaimer</button>
+    </footer>
+
+    <script src="script.js"></script>
+    
+    <script src="script2.js"></script>
+
+    <script>
+        // Initialize EmailJS with your user ID
+        emailjs.init("fkfY_KUXBjULKKDiH");  // Replace with your EmailJS user ID
+
+        document.getElementById('download-invoice').addEventListener('click', function(event) {
+    event.preventDefault();
+    alert("message sent")
+    return 
+
+    // Get form values (Correcting how you gather values)
+    const housingType = document.getElementById('housing-type').value;
+    const cameraType = document.getElementById('camera-type').value;
+    const audioType = document.getElementById('audio-type').value;  // Example, add more as needed
+    // Add more fields as needed...
+
+    console.log(housingType, cameraType, audioType);  // Log values for debugging
+
+    // Send email via EmailJS
+    emailjs.sendForm('service_ccepf3m', 'template_zodshbk', document.getElementById('camera-form'))
+        .then((response) => {
+            alert('Message sent successfully!');
+            // Optionally reset the form
+            document.getElementById('camera-form').reset();
+        }, (error) => {
+            alert('Failed to send the message. Please try again later.');
+            console.error('EmailJS error:', error);
+        });
+});
+
+    </script>
+
+
+</body>
+</html>

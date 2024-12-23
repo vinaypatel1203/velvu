@@ -1,0 +1,166 @@
+ /* Reset some default styles */
+ * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body and main layout */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+header {
+    background-color: #2a7d8f;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+}
+
+h1 {
+    margin: 0;
+}
+
+/* Form container */
+main {
+    background-color: #fff;
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h3 {
+    margin-top: 30px;
+    font-size: 1.1em;
+}
+
+/* Form label and input styling */
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 1em;
+}
+
+select, input[type="number"], input[type="checkbox"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 20px;
+    font-size: 1em;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+input[type="checkbox"] {
+    width: auto;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+.selected{
+    border-color: #007bff;
+    outline: none;
+}
+
+select:focus, input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Hidden elements (e.g., options that only show based on user selection) */
+.hidden {
+    display: none;
+}
+
+/* Price and quantity section */
+#total-price {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* Buttons */
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Footer section */
+footer {
+    margin-top: 30px;
+    text-align: center;
+    padding: 10px 0;
+    background-color: #333;
+    color: #fff;
+}
+
+footer p {
+    margin-bottom: 5px;
+}
+
+#imgs{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    visibility: hidden;
+}
+div img{
+    height: 200px;
+    width: 200px;
+    border-radius: 10px;
+    
+    transition: width 0.5s;
+}
+div img:hover{
+    width: 210px;
+    height: 210px;
+    box-shadow: 0 0 10px 2px red;
+}
+.unselected{
+    box-shadow: 0 0 10px 2px green;
+}
+.selected{
+    /* box-shadow: 0 0 10px 0px rgb(6, 49, 218); */
+    border: 2px blue solid;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    main {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.5em;
+    }
+
+    label, select, input[type="number"], button {
+        font-size: 0.9em;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+    }
+    img{
+        height: 100px;
+        width: 100px;
+    }
+}
