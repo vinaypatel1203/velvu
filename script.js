@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", function () {
       options = `<option value="3mp">3MP</option>`;
     }
     const megapixelSelect = document.getElementById("megapixel");
-    console.log(megapixelSelect);
+    // console.log(megapixelSelect);
     megapixelSelect.innerHTML = "";
     megapixelSelect.innerHTML = options;
   }
@@ -113,6 +113,52 @@ document.addEventListener("DOMContentLoaded", function () {
       audioOptions.classList.add("hidden");
     }
   }
+
+  // update PCB options
+  function updatePCB(){ 
+    let options = '';
+    if(housingTypeSelect.value == 'dome'){
+      options = `
+                <option value="2mp">2MP</option>
+                <option value="5mp">5MP</option>
+            `;    
+    }
+    else if(housingTypeSelect.value == 'bullet'){
+      options = `
+      <option value="2mp">15MP</option>
+      <option value="5mp">51MP</option>
+  `;  
+    }
+
+    const pcb = document.getElementById('pcb')
+    pcb.innerHTML = ''
+    pcb.innerHTML = options;
+
+  }
+
+
+   // update lens mm options
+   function updateLensMM(){ 
+    let options = '';
+    if(housingTypeSelect.value == 'dome'){
+      options = `
+                <option value="2mp">2MP</option>
+                <option value="5mp">5MP</option>
+            `;    
+    }
+    else if(housingTypeSelect.value == 'bullet'){
+      options = `
+      <option value="2mp">15MP</option>
+      <option value="5mp">51MP</option>
+  `;  
+    }
+
+    const pcb = document.getElementById('lens-mm')
+    pcb.innerHTML = ''
+    pcb.innerHTML = options;
+
+  }
+
 
   // Update PoE options visibility
   function updatePoEOptions() {
@@ -147,6 +193,8 @@ document.addEventListener("DOMContentLoaded", function () {
     updateCameraOptions();
     updatePoEOptions();
     calculatePrice();
+    updatePCB()
+    updateLensMM()
   });
   function imageRender() {
     const housingType = document.getElementById("housing-type").value;
