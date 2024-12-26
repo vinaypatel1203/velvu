@@ -27,6 +27,7 @@
                 <!-- Step 1: Housing Type -->
                 <label for="housing-type">Housing Type</label>
                 <select id="housing-type" name="housing-type">
+                    <option value="">Select</option>
                     <option value="dome">Dome</option>
                     <option value="bullet">Bullet</option>
                 </select>
@@ -84,7 +85,9 @@
                 <!-- Step 8: Lens mm -->
                 <label for="lens-mm">Lens (mm)</label>
                 <select id="lens-mm" name="lens-mm">
-                    <!-- Options will be dynamically populated -->
+                    <option value="18mm">1.8MM</option>
+                    <option value="28mm">2.8MM</option>
+                    <option value="36mm">3.6MM</option>
                 </select>
 
                 <!-- Step 9: Lens (MP) -->
@@ -99,7 +102,9 @@
                 <!-- Step 10: Lens Model -->
                 <label for="lens-model">Lens Model</label>
                 <select id="lens-model" name="lens-model">
-                    <!-- Options will be dynamically populated -->
+                    <option value="811">811</option>
+                    <option value="10083">10083</option>
+                    <option value="10081">10081</option>
                 </select>
 
                 <!-- Step 11: Body Type -->
@@ -154,10 +159,10 @@
                 <label for="company">Company Name</label>
                 <input type="text" id="company" name="company" placeholder="e.g. Open AI, NVIDIA">
                 
-                <label for="logo-upload">Logo</label>
-                <input type="file" id="logo-upload" accept="image/*">
+                <!-- <label for="logo-upload">Logo</label>
+                <input type="file" id="logo-upload" accept="image/*"> -->
                 
-                <p id="total-price">Total: $0</p>
+                <p id="total-price">Total: ₹0</p>
 
                 <!-- Submit Order Button -->
                 <button type="submit">Submit Order</button>
