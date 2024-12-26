@@ -11,6 +11,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const poeTypeContainer = document.getElementById("poe-type-container");
   const totalPriceElement = document.getElementById("total-price");
   const quantityInput = document.getElementById("quantity");
+  const pcb = document.getElementById('pcb')
+  const lensModel = document.getElementById('lens-model')
 
   // console.log(megapixelSelect)
 
@@ -60,17 +62,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Update megapixels based on camera selection
   function updateMegapixels(e) {
-    console.log(e.target.value);
 
-    // const cameraType = cameraTypeSelect.value;
     const cameraType = e.target.value;
-    // try {
-    //     const cameraType2 = document.getElementById("camera-type-2").value
-    //     cameraType = cameraType2
-    // } catch (error) {
-    //     console.log("Element not found..");
-
-    // }
     let options = "";
 
     if (
@@ -117,16 +110,17 @@ document.addEventListener("DOMContentLoaded", function () {
   // update PCB options
   function updatePCB(){ 
     let options = '';
-    if(housingTypeSelect.value == 'dome'){
+    if(cameraTypeSelect.value == 'HD'){
       options = `
-                <option value="2mp">2MP</option>
-                <option value="5mp">5MP</option>
+                <option value="800B">800B</option>
+                <option value="561F">561F</option>
             `;    
     }
-    else if(housingTypeSelect.value == 'bullet'){
+    else if(cameraTypeSelect.value == 'IP'){
       options = `
-      <option value="2mp">15MP</option>
-      <option value="5mp">51MP</option>
+      <option value="L34">L34</option>
+      <option value="H2">H2</option>
+      <option value="F5G">F5G</option>
   `;  
     }
 
@@ -176,15 +170,48 @@ document.addEventListener("DOMContentLoaded", function () {
   // Calculate total price (based on selections)
   function calculatePrice() {
     const quantity = parseInt(quantityInput.value, 10) || 1;
-    let basePrice = 100; // Dummy base price
+    let basePrice = 80; // Dummy base price
+    console.log(pcb);
+    
+    // check for the pcb
+    if(pcb.value==='800B'){
+      basePrice += 200
+    }
+    else if(pcb.value==='561F'){
+      basePrice += 180
+    }
+    else if(pcb.value==='L34'){
+      basePrice += 280
+    }
+    else if(pcb.value==='H2'){
+      basePrice += 290
+    }
+    else if(pcb.value==='F5G'){
+      basePrice += 480
+    }
+
+
+    //check for the lens mode
+    if(lensModel.value === "811"){
+      basePrice += 40
+    }
+    else if(lensModel.value === "10083"){
+      basePrice += 60
+    }
+    else if(lensModel.value === "10081"){
+      basePrice += 95
+    }
 
     // Adjust price based on selections (simplified example)
-    if (cameraTypeSelect.value === "special") {
+    if (housingTypeSelect.value === "dome") {
+      basePrice += 50; // Special camera adds $50
+    }
+    else if (housingTypeSelect.value === "bullet") {
       basePrice += 50; // Special camera adds $50
     }
 
     const total = basePrice * quantity;
-    totalPriceElement.textContent = `Total: $${total}`;
+    totalPriceElement.textContent = `Total: ₹${total}`;
   }
 
   // Event Listeners
@@ -193,8 +220,7 @@ document.addEventListener("DOMContentLoaded", function () {
     updateCameraOptions();
     updatePoEOptions();
     calculatePrice();
-    updatePCB()
-    updateLensMM()
+    // updateLensMM()
   });
   function imageRender() {
     const housingType = document.getElementById("housing-type").value;
@@ -262,7 +288,15 @@ document.addEventListener("DOMContentLoaded", function () {
     updatePoEOptions();
     calculatePrice();
     imageRender();
+    updatePCB()
   });
+
+  pcb.addEventListener('change', ()=>{
+    calculatePrice()
+  })
+  lensModel.addEventListener('change', ()=>{
+    calculatePrice()
+  })
 
   audioSelect.addEventListener("change", updateAudioOptions);
   quantityInput.addEventListener("input", calculatePrice);
