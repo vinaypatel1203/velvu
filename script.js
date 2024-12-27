@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const quantityInput = document.getElementById("quantity");
   const pcb = document.getElementById('pcb')
   const lensModel = document.getElementById('lens-model')
+  const imgsDiv = document.getElementById("imgs").children;
 
   // console.log(megapixelSelect)
 
@@ -170,8 +171,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Calculate total price (based on selections)
   function calculatePrice() {
     const quantity = parseInt(quantityInput.value, 10) || 1;
-    let basePrice = 80; // Dummy base price
-    console.log(pcb);
+    let basePrice = 0; // Dummy base price
     
     // check for the pcb
     if(pcb.value==='800B'){
@@ -202,13 +202,34 @@ document.addEventListener("DOMContentLoaded", function () {
       basePrice += 95
     }
 
+    imgsDiv.forEach((img)=>{
+      if(img.classList.contains('selected') && img.src.includes('bullet1')){
+      
+        basePrice += 100
+
+      }
+      else if(img.classList.contains('selected') && img.src.includes('bullet2')){
+      
+        basePrice += 120
+
+      }
+      else if(img.classList.contains('selected') && img.src.includes('dome')){
+      
+        basePrice += 80
+      }
+      else if(img.classList.contains('selected') && img.src.includes('dom1')){
+      
+        basePrice += 100
+
+      }
+    })
     // Adjust price based on selections (simplified example)
-    if (housingTypeSelect.value === "dome") {
-      basePrice += 50; // Special camera adds $50
-    }
-    else if (housingTypeSelect.value === "bullet") {
-      basePrice += 50; // Special camera adds $50
-    }
+    // if (housingTypeSelect.value === "dome") {
+    //   basePrice += 50; // Special camera adds $50
+    // }
+    // else if (housingTypeSelect.value === "bullet") {
+    //   basePrice += 50; // Special camera adds $50
+    // }
 
     const total = basePrice * quantity;
     totalPriceElement.textContent = `Total: ₹${total}`;
@@ -297,6 +318,12 @@ document.addEventListener("DOMContentLoaded", function () {
   lensModel.addEventListener('change', ()=>{
     calculatePrice()
   })
+  imgsDiv.forEach(element => {
+    element.addEventListener('click',()=>{
+      calculatePrice()
+    })
+    
+  });
 
   audioSelect.addEventListener("change", updateAudioOptions);
   quantityInput.addEventListener("input", calculatePrice);
