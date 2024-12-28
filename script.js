@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const audioOptions = document.getElementById("audio-options");
   const megapixelSelect = document.getElementById("megapixel");
   const poeTypeContainer = document.getElementById("poe-type-container");
-  const totalPriceElement = document.getElementById("total-price");
+  const totalPriceElement = document.querySelector(".total-price");
   const quantityInput = document.getElementById("quantity");
   const pcb = document.getElementById('pcb')
   const lensModel = document.getElementById('lens-model')
@@ -31,6 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
             `;
       const cameraType2Select = document.getElementById("camera-type-2");
       cameraType2Select.addEventListener("change", updateMegapixels);
+      cameraType2Select.addEventListener('change', updateAudioOptions);
     } else if (cameraType === "special") {
       const housingType = housingTypeSelect.value;
       if (housingType === "dome") {
@@ -44,6 +45,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 `;
         const cameraType2Select = document.getElementById("camera-type-2");
         cameraType2Select.addEventListener("change", updateMegapixels);
+        cameraType2Select.addEventListener('change', updateAudioOptions);
+
       } else if (housingType === "bullet") {
         cameraType2Container.innerHTML = `
                     <label for="camera-type-2">Camera Type 2</label>
@@ -57,8 +60,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 `;
         const cameraType2Select = document.getElementById("camera-type-2");
         cameraType2Select.addEventListener("change", updateMegapixels);
+        cameraType2Select.addEventListener('change', updateAudioOptions);
       }
     }
+    
   }
 
   // Update megapixels based on camera selection
@@ -101,7 +106,9 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   // Update audio options visibility
   function updateAudioOptions() {
-    if (audioSelect.value === "yes") {
+    // console.log(cameraTypeSelect.value);
+    
+    if (cameraTypeSelect.value === "special" && document.getElementById("camera-type-2").value === 'ip-two-way') {
       audioOptions.classList.remove("hidden");
     } else {
       audioOptions.classList.add("hidden");
@@ -312,6 +319,10 @@ document.addEventListener("DOMContentLoaded", function () {
     updatePCB()
   });
 
+  megapixelSelect.addEventListener('change', ()=>{
+    updateAudioOptions()
+  })
+
   pcb.addEventListener('change', ()=>{
     calculatePrice()
   })
@@ -324,6 +335,8 @@ document.addEventListener("DOMContentLoaded", function () {
     })
     
   });
+
+  document.querySelector("#update-btn").addEventListener('click', calculatePrice)
 
   audioSelect.addEventListener("change", updateAudioOptions);
   quantityInput.addEventListener("input", calculatePrice);
