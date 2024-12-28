@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const audioOptions = document.getElementById("audio-options");
   const megapixelSelect = document.getElementById("megapixel");
   const poeTypeContainer = document.getElementById("poe-type-container");
-  const totalPriceElement = document.querySelector(".total-price");
+  const totalPriceElements = document.querySelectorAll(".total-price");
   const quantityInput = document.getElementById("quantity");
   const pcb = document.getElementById('pcb')
   const lensModel = document.getElementById('lens-model')
@@ -25,6 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
       cameraType2Container.innerHTML = `
                 <label for="camera-type-2">Camera Type 2</label>
                 <select id="camera-type-2">
+                    <option value="">Select</option>
                     <option value="4g">4G</option>
                     <option value="wifi">WiFi</option>
                 </select>
@@ -38,6 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
         cameraType2Container.innerHTML = `
                     <label for="camera-type-2">Camera Type 2</label>
                     <select id="camera-type-2">
+                    <option value="">Select</option>
                         <option value="hd-fisheye">HD Fish-eye</option>
                         <option value="ip-fisheye">IP Fish-eye</option>
                         <option value="ip-two-way">IP Two-Way Audio</option>
@@ -51,6 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
         cameraType2Container.innerHTML = `
                     <label for="camera-type-2">Camera Type 2</label>
                     <select id="camera-type-2">
+                    <option value="">Select</option>
                         <option value="hd-fisheye">HD Fish-eye</option>
                         <option value="ip-fisheye">IP Fish-eye</option>
                         <option value="hd-long-range">HD Long Range</option>
@@ -78,6 +81,7 @@ document.addEventListener("DOMContentLoaded", function () {
       cameraType === "hd-long-range"
     ) {
       options = `
+      <option value="">Select</option>
                 <option value="2mp">2MP</option>
                 <option value="5mp">5MP</option>
             `;
@@ -88,6 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
       cameraType === "ip-two-way"
     ) {
       options = `
+      <option value="">Select</option>
                 <option value="3mp">3MP</option>
                 <option value="4mp">4MP</option>
                 <option value="5mp">5MP</option>
@@ -95,9 +100,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 <option value="8mp">8MP</option>
             `;
     } else if (cameraType === "4g") {
-      options = `<option value="3mp">3MP</option>`;
+      options = `
+      <option value="">Select</option>
+      <option value="3mp">3MP</option>
+      `;
     } else if (cameraType === "wifi") {
-      options = `<option value="3mp">3MP</option>`;
+      options = `
+      <option value="">Select</option>
+      <option value="3mp">3MP</option>`;
     }
     const megapixelSelect = document.getElementById("megapixel");
     // console.log(megapixelSelect);
@@ -120,12 +130,14 @@ document.addEventListener("DOMContentLoaded", function () {
     let options = '';
     if(cameraTypeSelect.value == 'HD'){
       options = `
+      <option value="">Select</option>
                 <option value="800B">800B</option>
                 <option value="561F">561F</option>
             `;    
     }
     else if(cameraTypeSelect.value == 'IP'){
       options = `
+      <option value="">Select</option>
       <option value="L34">L34</option>
       <option value="H2">H2</option>
       <option value="F5G">F5G</option>
@@ -144,12 +156,14 @@ document.addEventListener("DOMContentLoaded", function () {
     let options = '';
     if(housingTypeSelect.value == 'dome'){
       options = `
+      <option value="">Select</option>
                 <option value="2mp">2MP</option>
                 <option value="5mp">5MP</option>
             `;    
     }
     else if(housingTypeSelect.value == 'bullet'){
       options = `
+      <option value="">Select</option>
       <option value="2mp">15MP</option>
       <option value="5mp">51MP</option>
   `;  
@@ -239,7 +253,9 @@ document.addEventListener("DOMContentLoaded", function () {
     // }
 
     const total = basePrice * quantity;
-    totalPriceElement.textContent = `Total: ₹${total}`;
+    totalPriceElements.forEach((totalPriceElement)=>{
+      totalPriceElement.textContent = `Total: ₹${total}`;
+    })
   }
 
   // Event Listeners
@@ -329,12 +345,12 @@ document.addEventListener("DOMContentLoaded", function () {
   lensModel.addEventListener('change', ()=>{
     calculatePrice()
   })
-  imgsDiv.forEach(element => {
-    element.addEventListener('click',()=>{
-      calculatePrice()
-    })
+  // imgsDiv.forEach(element => {
+  //   element.addEventListener('click',()=>{
+  //     calculatePrice()
+  //   })
     
-  });
+  // });
 
   document.querySelector("#update-btn").addEventListener('click', calculatePrice)
 
