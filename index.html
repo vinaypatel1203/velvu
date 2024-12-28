@@ -14,8 +14,10 @@
 <body>
     <header>
         <img src="./img/logo.jpg">
-        <h1>www.velvu.in</h1>
+        <h1>www.velvu.in </h1>
         <nav>
+            <span class="total-price">Total: ₹0</span>
+            <a href="#" id="update-btn">Update price</a>
             <!-- Navigation links -->
         </nav>
     </header>
@@ -45,6 +47,16 @@
                 <!-- Dynamic Camera Type 2, depending on Camera Type -->
                 <div id="camera-type-2-container"></div>
 
+                 <!-- Step 3: Camera Options for Two-Way Audio -->
+                 <div id="audio-options" class="hidden">
+                    <label for="audio-type">Speaker Type</label>
+                    <select id="audio-type" name="audio-type">
+                        <option value="inbuilt">In-built Speaker</option>
+                        <option value="external">External Speaker</option>
+                    </select>
+                </div>
+
+
                 <!-- Step 4: Mega Pixel -->
                 <label for="megapixel">Mega Pixel</label>
                 <select id="megapixel" name="megapixel">
@@ -58,15 +70,7 @@
                     <option value="no">No</option>
                     <option value="yes">Yes</option>
                 </select>
-                 <!-- Step 3: Camera Options for Two-Way Audio -->
-                <div id="audio-options" class="hidden">
-                    <label for="audio-type">Speaker Type</label>
-                    <select id="audio-type" name="audio-type">
-                        <option value="inbuilt">In-built Speaker</option>
-                        <option value="external">External Speaker</option>
-                    </select>
-                </div>
-
+                
                 <!-- Step 6: Night Vision -->
                 <label for="night-vision">Night Vision</label>
                 <select id="night-vision" name="night-vision">
@@ -163,7 +167,7 @@
                 <!-- <label for="logo-upload">Logo</label>
                 <input type="file" id="logo-upload" accept="image/*"> -->
                 
-                <p id="total-price">Total: ₹0</p>
+                <p class="total-price">Total: ₹0</p>
 
                 <!-- Submit Order Button -->
                 <button type="submit">Submit Order</button>
