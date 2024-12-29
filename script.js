@@ -223,34 +223,25 @@ document.addEventListener("DOMContentLoaded", function () {
       basePrice += 95
     }
 
-    imgsDiv.forEach((img)=>{
-      if(img.classList.contains('selected') && img.src.includes('bullet1')){
-      
-        basePrice += 100
-
-      }
-      else if(img.classList.contains('selected') && img.src.includes('bullet2')){
-      
-        basePrice += 120
-
-      }
-      else if(img.classList.contains('selected') && img.src.includes('dome')){
-      
+    // Get the selected radio button
+    const selectedRadio = document.querySelector('input[name="image"]:checked');
+    
+    // Check if a radio button is selected
+    if (selectedRadio) {
+        const selectedValue = selectedRadio.value;   
+      if(housingTypeSelect.value==='dome' && selectedValue==='image1'){
         basePrice += 80
       }
-      else if(img.classList.contains('selected') && img.src.includes('dom1')){
-      
+      else if(housingTypeSelect.value==='dome' && selectedValue==='image2'){
         basePrice += 100
-
       }
-    })
-    // Adjust price based on selections (simplified example)
-    // if (housingTypeSelect.value === "dome") {
-    //   basePrice += 50; // Special camera adds $50
-    // }
-    // else if (housingTypeSelect.value === "bullet") {
-    //   basePrice += 50; // Special camera adds $50
-    // }
+      else if(housingTypeSelect.value==='bullet' && selectedValue==='image1'){
+        basePrice += 100
+      }
+      else if(housingTypeSelect.value==='bullet' && selectedValue==='image2'){
+        basePrice += 120
+      }
+    }
 
     const total = basePrice * quantity;
     totalPriceElements.forEach((totalPriceElement)=>{
@@ -317,7 +308,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Toggle between 'selected' and 'unselected' classes
     if (child.classList.contains('unselected')) {
       child.classList.remove('unselected');
-      child.classList.add('selected');
+      // child.classList.add('selected');
     } else {
       child.classList.remove('selected');
       child.classList.add('unselected');
