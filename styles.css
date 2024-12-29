@@ -159,7 +159,7 @@ div img:hover{
 }
 .selected{
     /* box-shadow: 0 0 10px 0px rgb(6, 49, 218); */
-    border: 2px blue solid;
+    /* border: 2px blue solid; */
 }
 
 /* Responsive design */
@@ -167,7 +167,6 @@ div img:hover{
     main {
         padding: 15px;
     }
-
     h1 {
         font-size: 1.2em;
     }
