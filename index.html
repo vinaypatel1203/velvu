@@ -10,6 +10,25 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3.2.0/dist/email.min.js"></script>
    
+<style>
+    .radio-button {
+    display: none; /* Hide the radio button */
+}
+
+label {
+    cursor: pointer; /* Change cursor to pointer when hovering over the label */
+}
+
+label img {
+    border: 2px solid transparent; /* Default border */
+}
+
+input[type="radio"]:checked + img {
+    border: 2px solid blue; /* Change border color when selected */
+}
+</style>
+
+    
 </head>
 <body>
     <header>
@@ -155,10 +174,21 @@
                 <label><input type="checkbox" name="eva-pad"> EVA Pad</label>
 
                 <!-- images-->
-                 <div id="imgs">
+                 <!-- <div id="imgs">
                     <img src="./img/dom1.jpeg" alt="image1" width="40%" class="unselected">
                     <img src="./img/dom1.jpeg" alt="image2" width="40%" class="unselected">
-                 </div>
+                 </div> -->
+                 <div id="imgs">
+                    <label>
+                        <input type="radio" name="image" value="image1" class="radio-button" />
+                        <img src="./img/dom1.jpeg" alt="image1" width="40%" class="unselected">
+                    </label>
+                    <label>
+                        <input type="radio" name="image" value="image2" class="radio-button" />
+                        <img src="./img/dom1.jpeg" alt="image2" width="40%" class="unselected">
+                    </label>
+                </div>
+
 
                 <!-- Quantity and Price Section -->
                 <label for="quantity">Quantity</label>
