@@ -109,6 +109,12 @@ document.addEventListener("DOMContentLoaded", function () {
       <option value="">Select</option>
       <option value="3mp">3MP</option>`;
     }
+    else if(cameraTypeSelect.value==='standalone'){
+      options = `
+      <option value="">Select</option>
+      <option value="3mp">3MP</option>`;
+    }
+    
     const megapixelSelect = document.getElementById("megapixel");
     // console.log(megapixelSelect);
     megapixelSelect.innerHTML = "";
@@ -154,20 +160,51 @@ document.addEventListener("DOMContentLoaded", function () {
    // update lens mm options
    function updateLensMM(){ 
     let options = '';
-    if(housingTypeSelect.value == 'dome'){
+    const cameraType2Select = document.getElementById('camera-type-2')
+    if(cameraType2Select){
+    if(cameraType2Select.value.includes('fisheye')){
       options = `
       <option value="">Select</option>
-                <option value="2mp">2MP</option>
-                <option value="5mp">5MP</option>
+                <option value="1_8mm">1.8mm</option>
+            `;    
+    }else if(cameraType2Select.value.includes('long-range')){
+      options = `
+      <option value="">Select</option>
+                <option value="8mm">8mm</option>
+                <option value="12mm">12mm</option>
+                <option value="motorized">Motorized VF 2.8~13.5mm</option>
+            `;    
+    }else if(cameraType2Select.value.includes('4g')){
+      options = `
+      <option value="">Select</option>
+                <option value="2_8mm">2.8mm</option>
+                <option value="3_6mm">3.6mm</option>
             `;    
     }
-    else if(housingTypeSelect.value == 'bullet'){
+    else if(cameraType2Select.value.includes('wifi')){
       options = `
       <option value="">Select</option>
-      <option value="2mp">15MP</option>
-      <option value="5mp">51MP</option>
-  `;  
+                <option value="2_8mm">2.8mm</option>
+                <option value="3_6mm">3.6mm</option>
+            `;    
     }
+    else{
+      options = `
+      <option value="">Select</option>
+      <option value="2_8mm">2.8mm</option>
+      <option value="3_6mm">3.6mm</option>
+      <option value="6mm">6mm</option>
+  `;  
+    }}
+    else{
+      options = `
+      <option value="">Select</option>
+      <option value="2_8mm">2.8mm</option>
+      <option value="3_6mm">3.6mm</option>
+      <option value="6mm">6mm</option>
+  `;  }
+    
+    
 
     const pcb = document.getElementById('lens-mm')
     pcb.innerHTML = ''
@@ -230,7 +267,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (selectedRadio) {
         const selectedValue = selectedRadio.value;   
       if(housingTypeSelect.value==='dome' && selectedValue==='image1'){
-        basePrice += 80
+        basePrice += 80 
       }
       else if(housingTypeSelect.value==='dome' && selectedValue==='image2'){
         basePrice += 100
@@ -328,6 +365,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   megapixelSelect.addEventListener('change', ()=>{
     updateAudioOptions()
+    updateLensMM()
   })
 
   pcb.addEventListener('change', ()=>{
