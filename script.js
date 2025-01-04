@@ -226,13 +226,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Update PoE options visibility
   function updatePoEOptions() {
-    if (
-      cameraTypeSelect.value === "ip" ||
-      cameraTypeSelect.value === "ip-fisheye" ||
-      cameraTypeSelect.value === "ip-long-range"
-    ) {
+    const cameraType2 = document.getElementById('camera-type-2')  
+      
+    if (cameraTypeSelect.value === "IP") {      
       poeTypeContainer.classList.remove("hidden");
-    } else {
+    } 
+    else if(cameraType2){            
+        if(cameraType2.value==="ip-fisheye"||cameraType2.value==="ip-long-range"||cameraType2.value.includes('ip-two-way')){
+          poeTypeContainer.classList.remove("hidden");
+      }else{
+        poeTypeContainer.classList.add("hidden");
+      }
+    }
+    else{
       poeTypeContainer.classList.add("hidden");
     }
   }
@@ -348,7 +354,6 @@ document.addEventListener("DOMContentLoaded", function () {
         if (image1) {
           image1.src = dom1;
           image2.src = dom2;
-          //   console.log(imageDiv);
         } else {
           console.error("No <img> tag found in the #imgs div");
         }
@@ -395,7 +400,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if(housingTypeSelect.value ==='bullet'){
       waterProofCap.checked = true
       waterProofCap.disabled = true
-      evapad.checked = true
+      evapad.disabled = false
     }
   }
 
@@ -404,7 +409,7 @@ document.addEventListener("DOMContentLoaded", function () {
 housingTypeSelect.addEventListener("change", function () {
   imageRender();
   updateCameraOptions();
-  updatePoEOptions();
+  // updatePoEOptions();
   calculatePrice();
   updateSelections()
   // updateLensMM()
@@ -422,6 +427,7 @@ housingTypeSelect.addEventListener("change", function () {
     updateAudioOptions();
     updateLensMM();
     updatePCB()
+    updatePoEOptions();
   });
 
   pcb.addEventListener("change", () => {
