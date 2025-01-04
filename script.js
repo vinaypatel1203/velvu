@@ -111,6 +111,15 @@ document.addEventListener("DOMContentLoaded", function () {
       <option value="3mp">3MP</option>`;
     }
 
+    const cameraType2 = document.getElementById('camera-type-2')
+    if(cameraType2){
+      if(cameraType2.value.includes("two-way")){
+        options = `
+      <option value="">Select</option>
+      <option value="4mp">4MP</option>`;
+      }
+    }
+
     const megapixelSelect = document.getElementById("megapixel");
     // console.log(megapixelSelect);
     megapixelSelect.innerHTML = "";
@@ -146,6 +155,17 @@ document.addEventListener("DOMContentLoaded", function () {
       <option value="H2">H2</option>
       <option value="F5G">F5G</option>
   `;
+    }
+
+    const megaPix = document.getElementById('megapixel')
+    if(megaPix){
+      if(megaPix.value=='2mp'){
+        options = `
+      <option value="">Select</option>
+                <option value="800B">800B</option>
+                <option value="561F">561</option>
+            `;
+      }
     }
 
     const pcb = document.getElementById("pcb");
@@ -376,7 +396,6 @@ document.addEventListener("DOMContentLoaded", function () {
       waterProofCap.checked = true
       waterProofCap.disabled = true
       evapad.checked = true
-      evapad.disabled = true
     }
   }
 
@@ -402,6 +421,7 @@ housingTypeSelect.addEventListener("change", function () {
   megapixelSelect.addEventListener("change", () => {
     updateAudioOptions();
     updateLensMM();
+    updatePCB()
   });
 
   pcb.addEventListener("change", () => {
@@ -410,12 +430,6 @@ housingTypeSelect.addEventListener("change", function () {
   lensModel.addEventListener("change", () => {
     calculatePrice();
   });
-  // imgsDiv.forEach(element => {
-  //   element.addEventListener('click',()=>{
-  //     calculatePrice()
-  //   })
-
-  // });
 
   document
     .querySelector("#update-btn")
