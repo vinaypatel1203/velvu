@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const quantityInput = document.getElementById("quantity");
   const pcb = document.getElementById("pcb");
   const lensModel = document.getElementById("lens-model");
+  const lensMM = document.getElementById("lens-mm");
   const imgsDiv = document.getElementById("imgs").children;
 
   // console.log(megapixelSelect)
@@ -141,32 +142,57 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // update PCB options
   function updatePCB() {
+    const megapx = document.getElementById("megapixel").value;
     let options = "";
-    if (cameraTypeSelect.value == "HD") {
+    if (cameraTypeSelect.value == "HD" && megapx == "2mp") {
       options = `
       <option value="">Select</option>
                 <option value="800B">800B</option>
                 <option value="561F">561F</option>
             `;
-    } else if (cameraTypeSelect.value == "IP") {
+    }else if (cameraTypeSelect.value == "HD" && megapx == "5mp") {
+      options = `
+      <option value="">Select</option>
+                <option value="2253">2253</option>
+            `;
+    }
+     else if (cameraTypeSelect.value == "IP" && megapx == "5mp") {
       options = `
       <option value="">Select</option>
       <option value="L34">L34</option>
+      <option value="Z55">Z55</option>
       <option value="H2">H2</option>
+      <option value="H4PJ">H4PJ</option>
       <option value="F5G">F5G</option>
+      <option value="A52">A52</option>
+  `;
+    }else if (cameraTypeSelect.value == "IP" && megapx == "6mp") {
+      options = `
+      <option value="">Select</option>
+      <option value="sonySensor">Sony Sensor</option>
+  `;
+    }else if(document.getElementById("camera-type-2").value === 'wifi' && megapx == "3mp"){
+      options = `
+      <option value="">Select</option>
+      <option value="wifi">WIFI</option>
+  `;
+    }else if(document.getElementById("camera-type-2").value === '4g' && megapx == "3mp"){
+      options = `
+      <option value="">Select</option>
+      <option value="4g">4G</option>
   `;
     }
 
-    const megaPix = document.getElementById('megapixel')
-    if(megaPix){
-      if(megaPix.value=='2mp'){
-        options = `
-      <option value="">Select</option>
-                <option value="800B">800B</option>
-                <option value="561F">561</option>
-            `;
-      }
-    }
+    // const megaPix = document.getElementById('megapixel')
+    // if(megaPix){
+    //   if(megaPix.value=='2mp'){
+    //     options = `
+    //   <option value="">Select</option>
+    //             <option value="800B">800B</option>
+    //             <option value="561F">561</option>
+    //         `;
+    //   }
+    // }
 
     const pcb = document.getElementById("pcb");
     pcb.innerHTML = "";
@@ -205,6 +231,7 @@ document.addEventListener("DOMContentLoaded", function () {
       } else {
         options = `
       <option value="">Select</option>
+      <option value="1_8mm">1.8mm</option>
       <option value="2_8mm">2.8mm</option>
       <option value="3_6mm">3.6mm</option>
       <option value="6mm">6mm</option>
@@ -222,6 +249,71 @@ document.addEventListener("DOMContentLoaded", function () {
     const pcb = document.getElementById("lens-mm");
     pcb.innerHTML = "";
     pcb.innerHTML = options;
+  }
+
+  function updateLensModel() {
+    let options = "";
+    const megapx = document.getElementById("megapixel").value;
+    const lensMM = document.getElementById("lens-mm").value;
+    console.log(lensMM, megapx);
+    
+    const lensModel = document.getElementById("lens-model");
+    const cameraTypeSelect = document.getElementById("camera-type");
+
+    if (cameraTypeSelect.value === 'HD' && lensMM==='3_6mm' && megapx === '2mp') {
+      options = `
+    <option value="">Select</option>
+              <option value="CW811">CW811</option>
+              <option value="10083_Eco">10083 Eco</option>
+          `;
+    }else if (cameraTypeSelect.value === 'HD' && lensMM==='1_8mm') {
+      options = `
+    <option value="">Select</option>
+              <option value="fisheye_Eco">Fisheye Eco</option>
+          `;
+    }else if (cameraTypeSelect.value === 'IP' && lensMM==='1_8mm') {
+      options = `
+    <option value="">Select</option>
+              <option value="fisheye_Heavy">Fisheye Heavy</option>
+          `;
+    }else if (cameraTypeSelect.value === 'IP' && lensMM==='vari_focal') {
+      options = `
+    <option value="">Select</option>
+              <option value="vari_focal">Vari Focal</option>
+          `;
+    }else if (lensMM==='3_6mm') {
+      options = `
+    <option value="">Select</option>
+              <option value="10083_Heavy">10083 Heavy</option>
+              <option value="10081_Eco">10081 Eco</option>
+              <option value="10081_Heavy">10081 Heavy</option>
+              <option value="10116">10116</option>
+          `;
+    }else if (lensMM==='6mm') {
+      options = `
+    <option value="">Select</option>
+              <option value="10098_Heavy">10098 Heavy</option>
+          `;
+    }else if (lensMM==='2_8mm') {
+      options = `
+    <option value="">Select</option>
+              <option value="10077_Eco">10077 Eco</option>
+              <option value="10077_Heavy">10077 Heavy</option>
+          `;
+    }else if (lensMM==='8mm') {
+      options = `
+    <option value="">Select</option>
+              <option value="8mm">8MM</option>
+              `;
+    }else if (lensMM==='12mm') {
+      options = `
+    <option value="">Select</option>
+              <option value="12mm">12MM</option>
+              `;
+    }
+    lensModel.innerHTML = "";
+    lensModel.innerHTML = options;
+
   }
 
   // Update PoE options visibility
@@ -433,6 +525,9 @@ housingTypeSelect.addEventListener("change", function () {
   pcb.addEventListener("change", () => {
     calculatePrice();
   });
+  lensMM.addEventListener("change", () => {
+    updateLensModel();
+  })
   lensModel.addEventListener("change", () => {
     calculatePrice();
   });
