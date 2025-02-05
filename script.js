@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const lensModel = document.getElementById("lens-model");
   const lensMM = document.getElementById("lens-mm");
   const imgsDiv = document.getElementById("imgs").children;
+  const bodyTypeSelect = document.getElementById('body-type')
 
   // console.log(megapixelSelect)
 
@@ -182,18 +183,6 @@ document.addEventListener("DOMContentLoaded", function () {
       <option value="4g">4G</option>
   `;
     }
-
-    // const megaPix = document.getElementById('megapixel')
-    // if(megaPix){
-    //   if(megaPix.value=='2mp'){
-    //     options = `
-    //   <option value="">Select</option>
-    //             <option value="800B">800B</option>
-    //             <option value="561F">561</option>
-    //         `;
-    //   }
-    // }
-
     const pcb = document.getElementById("pcb");
     pcb.innerHTML = "";
     pcb.innerHTML = options;
@@ -335,6 +324,259 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  function updateModel(){
+    const modelSelect = document.getElementById('model')
+    const housingType = housingTypeSelect.value;
+    let nightVision = document.getElementById('night-vision').value
+    const cameraType2Select = document.getElementById('camera-type-2')
+    let cameraType2 = cameraType2Select ? cameraType2Select.value.toLowerCase() : null;
+    const bodyType = document.getElementById('body-type').value
+
+    if(nightVision==='smart-dual-light'){
+      nightVision = 'Dual'
+    }else if(nightVision==='full-color'){
+      nightVision = 'color'
+    }
+
+    if(cameraType2){
+      if(cameraType2.includes('fish')){
+        cameraType2 = 'fish';
+      }
+    }
+
+    let options = "";
+
+
+    // Define the models based on the conditions
+    const models = [
+      {
+        "modelSelect": "MB-OI10-M",
+        "bodyType": "metal",
+        "cameraType2": null,
+        "housingType": "bullet",
+        "nightVision": "Color / Dual"
+      },
+      {
+        "modelSelect": "MB-O120-M (Black)",
+        "bodyType": "metal",
+        "cameraType2": null,
+        "housingType": "bullet",
+        "nightVision": "Color / Dual"
+      },
+      {
+        "modelSelect": "MB-0120-M",
+        "bodyType": "metal",
+        "cameraType2": null,
+        "housingType": "bullet",
+        "nightVision": "Color / Dual"
+      },
+      {
+        "modelSelect": "MB-0130-M",
+        "bodyType": "metal",
+        "cameraType2": null,
+        "housingType": "bullet",
+        "nightVision": "Color / Dual"
+      },
+      {
+        "modelSelect": "MB-0140-M",
+        "bodyType": "metal",
+        "cameraType2": null,
+        "housingType": "bullet",
+        "nightVision": "Dual"
+      },
+      {
+        "modelSelect": "MB-VI10-M",
+        "bodyType": "metal",
+        "cameraType2": null,
+        "housingType": "bullet",
+        "nightVision": "Color / Dual"
+      },
+      {
+        "modelSelect": "MB-VI20-M",
+        "bodyType": "metal",
+        "cameraType2": null,
+        "housingType": "bullet",
+        "nightVision": "Color / Dual"
+      },
+      {
+        "modelSelect": "MB-V150F-M",
+        "bodyType": "metal",
+        "cameraType2": "Fish Eye",
+        "housingType": "bullet",
+        "nightVision": "Color / Dual"
+      },
+      {
+        "modelSelect": "MD-0120-M",
+        "bodyType": "metal",
+        "cameraType2": null,
+        "housingType": "bullet",
+        "nightVision": "Color / Dual"
+      },
+      {
+        "modelSelect": "MD-VI40M-S",
+        "bodyType": "metal",
+        "cameraType2": null,
+        "housingType": "dome",
+        "nightVision": "Color / Dual"
+      },
+      {
+        "modelSelect": "MD-V150-M",
+        "bodyType": "metal",
+        "cameraType2": null,
+        "housingType": "dome",
+        "nightVision": "Color / Dual"
+      },
+      {
+        "modelSelect": "OEM 4G bullet",
+        "bodyType": "Plastic",
+        "cameraType2": "4G / WiFi",
+        "housingType": "bullet",
+        "nightVision": "Dual"
+      },
+      {
+        "modelSelect": "OEM 4G dome",
+        "bodyType": "Plastic",
+        "cameraType2": "4G / WiFi",
+        "housingType": "dome",
+        "nightVision": "Dual"
+      },
+      {
+        "modelSelect": "OEM HD dome 4 Light",
+        "bodyType": "Plastic",
+        "cameraType2": null,
+        "housingType": "dome",
+        "nightVision": "Color"
+      },
+      {
+        "modelSelect": "PB-0120-M",
+        "bodyType": "Plastic",
+        "cameraType2": null,
+        "housingType": "bullet",
+        "nightVision": "Color"
+      },
+      {
+        "modelSelect": "PB-VH30",
+        "bodyType": "Plastic",
+        "cameraType2": "Fish Eye",
+        "housingType": "bullet",
+        "nightVision": "Color"
+      },
+      {
+        "modelSelect": "PD-OI10-M",
+        "bodyType": "Front metal",
+        "cameraType2": null,
+        "housingType": "dome",
+        "nightVision": "Color / Dual"
+      },
+      {
+        "modelSelect": "PD-0120-M",
+        "bodyType": "Plastic",
+        "cameraType2": null,
+        "housingType": "dome",
+        "nightVision": "Color"
+      },
+      {
+        "modelSelect": "PD-0130-M",
+        "bodyType": "Plastic",
+        "cameraType2": null,
+        "housingType": "dome",
+        "nightVision": "Color"
+      },
+      {
+        "modelSelect": "PD-0140-M",
+        "bodyType": "Plastic",
+        "cameraType2": null,
+        "housingType": "dome",
+        "nightVision": "Color"
+      },
+      {
+        "modelSelect": "MB-VI70-M",
+        "bodyType": "metal",
+        "cameraType2": "Vari-focal",
+        "housingType": "bullet",
+        "nightVision": "Color / Dual"
+      },
+      {
+        "modelSelect": "MD-VI10-M",
+        "bodyType": "metal",
+        "cameraType2": null,
+        "housingType": "dome",
+        "nightVision": "Color / Dual"
+      },
+      {
+        "modelSelect": "PB-VH20-M",
+        "bodyType": "Plastic",
+        "cameraType2": null,
+        "housingType": "bullet",
+        "nightVision": "Color / Dual"
+      },
+      {
+        "modelSelect": "MD-VI30F-M",
+        "bodyType": "metal",
+        "cameraType2": "Fish Eye",
+        "housingType": "dome",
+        "nightVision": "Color / Dual"
+      },
+      {
+        "modelSelect": "MB-V180-M",
+        "bodyType": "metal",
+        "cameraType2": "Long Range",
+        "housingType": "bullet",
+        "nightVision": "Color / Dual"
+      },
+      {
+        "modelSelect": "MD-VI20M-S",
+        "bodyType": "metal",
+        "cameraType2": null,
+        "housingType": "dome",
+        "nightVision": "Color / Dual"
+      },
+      {
+        "modelSelect": "MB-VW40M-S",
+        "bodyType": "metal",
+        "cameraType2": null,
+        "housingType": "bullet",
+        "nightVision": "Dual"
+      },
+      {
+        "modelSelect": "PD-VH10F-M",
+        "bodyType": "plastic",
+        "cameraType2": 'Fish Eye',
+        "housingType": "dome",
+        "nightVision": "Dual"
+      },
+    ];
+
+
+    let selectedModel = models.forEach((model) => {
+     
+      if(model.cameraType2 && cameraType2){
+
+        if(model.cameraType2.toLowerCase().includes(cameraType2.toLowerCase())
+          && model.bodyType.toLowerCase() === bodyType.toLowerCase()
+          && model.housingType.toLowerCase() === housingType.toLowerCase()
+          && model.nightVision.toLowerCase().includes( nightVision.toLowerCase())
+            ){
+              console.log("matched", model.modelSelect);  
+              
+              options += `<option value="${model.modelSelect}">${model.modelSelect}</option>`;
+              return model;  
+            }
+      }else{
+        if(!cameraType2 && !model.cameraType2 && model.bodyType.toLowerCase() === bodyType.toLowerCase()
+          && model.housingType.toLowerCase() === housingType.toLowerCase()
+          && model.nightVision.toLowerCase().includes( nightVision.toLowerCase())
+            ){              
+              options += `<option value="${model.modelSelect}">${model.modelSelect}</option>`;
+              return model;  
+            }
+      } 
+    });
+
+    modelSelect.innerHTML = "";
+    modelSelect.innerHTML = options;
+
+  }
   // Calculate total price (based on selections)
   function calculatePrice() {
     const quantity = parseInt(quantityInput.value, 10) || 1;
@@ -531,6 +773,10 @@ housingTypeSelect.addEventListener("change", function () {
   lensModel.addEventListener("change", () => {
     calculatePrice();
   });
+
+  bodyTypeSelect.addEventListener("change", () => {
+    updateModel();
+  })
 
   document
     .querySelector("#update-btn")
