@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const lensMM = document.getElementById("lens-mm");
   const imgsDiv = document.getElementById("imgs").children;
   const bodyTypeSelect = document.getElementById('body-type')
+  const nightVisionSelect = document.getElementById('night-vision')
 
   // console.log(megapixelSelect)
 
@@ -65,6 +66,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const cameraType2Select = document.getElementById("camera-type-2");
         cameraType2Select.addEventListener("change", updateMegapixels);
         cameraType2Select.addEventListener("change", updateAudioOptions);
+        cameraType2Select.addEventListener('change', updateAudio)
+        cameraType2Select.addEventListener('change', updateNightVision)
       }
     }
   }
@@ -577,6 +580,41 @@ document.addEventListener("DOMContentLoaded", function () {
     modelSelect.innerHTML = options;
 
   }
+
+
+  function updateAudio(){
+    const audio = document.getElementById("audio");    
+    let options = "";
+    audio.innerHTML = "";
+
+      let cameraType2 = document.getElementById('camera-type-2')
+      cameraType2 ? cameraType2 = cameraType2.value : cameraType2 = "";
+      console.log(cameraType2);
+      
+      if(cameraType2.toLowerCase().includes('two-way')){
+        options += `<option value="yes">Yes</option>`;
+      }
+      
+    audio.innerHTML = options;
+  }
+
+  function updateNightVision(){
+    const nightVision = document.getElementById("night-vision");
+    let cameraType2 = document.getElementById('camera-type-2')
+    cameraType2 ? cameraType2 = cameraType2.value : cameraType2 = "";
+    console.log(cameraType2);
+    let options = "";
+    
+    if(cameraType2.toLowerCase().includes('hd-fisheye')){
+      options += `<option value="full-color">24 x 7 Full Color</option>`;
+    }else if(cameraType2.toLowerCase().includes('ip-fisheye')){
+      options += `<option value="smart-dual-light">Smart Dual Light</option>`;
+    }
+    nightVision.innerHTML = "";
+    nightVision.innerHTML = options;
+
+  }
+
   // Calculate total price (based on selections)
   function calculatePrice() {
     const quantity = parseInt(quantityInput.value, 10) || 1;
@@ -595,6 +633,19 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     else if(cameraTypeSelect.value==='special'){
       basePrice += 100;
+    }
+
+    if(nightVisionSelect.value === 'full-color'){
+      basePrice += 0;
+    }
+    else if(nightVisionSelect.value === 'dark-light'){
+      basePrice += 0;
+    }
+    else if(nightVisionSelect.value === 'smart-dual-light'){
+      basePrice += 30;
+    }
+    else if(nightVisionSelect.value === 'normal'){
+      basePrice += 30;
     }
 
     // check for the pcb
