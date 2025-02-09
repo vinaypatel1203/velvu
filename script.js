@@ -148,6 +148,20 @@ document.addEventListener("DOMContentLoaded", function () {
   function updatePCB() {
     const megapx = document.getElementById("megapixel").value;
     let options = "";
+    let cameraType2 = document.getElementById('camera-type-2')
+    if(cameraType2){
+      if(cameraTypeSelect.value == "IP" && megapx == "5mp" && cameraType2.value.includes("two-way")){
+        options = `
+      <option value="">Select</option>
+                <option value="A52">A52</option>
+            `;
+      }
+      const pcb = document.getElementById("pcb");
+    pcb.innerHTML = "";
+    pcb.innerHTML = options;
+    return;
+    }
+
     if (cameraTypeSelect.value == "HD" && megapx == "2mp") {
       options = `
       <option value="">Select</option>
@@ -156,10 +170,14 @@ document.addEventListener("DOMContentLoaded", function () {
             `;
     }else if (cameraTypeSelect.value == "HD" && megapx == "5mp") {
       options = `
-      <option value="">Select</option>
+                <option value="">Select</option>
                 <option value="2253">2253</option>
             `;
-    }
+    }else if (cameraTypeSelect.value == "IP" && megapx == "5mp" && nightVisionSelect.value == "dark-light") {
+      options = `
+      <option value="">Select</option>
+      <option value="H4PJ">H4PJ</option>
+  `;}
      else if (cameraTypeSelect.value == "IP" && megapx == "5mp") {
       options = `
       <option value="">Select</option>
@@ -280,6 +298,8 @@ document.addEventListener("DOMContentLoaded", function () {
               <option value="10081_Eco">10081 Eco</option>
               <option value="10081_Heavy">10081 Heavy</option>
               <option value="10116">10116</option>
+              <option value="CW811">CW811</option>
+              <option value="10083_Eco">10083 Eco</option>
           `;
     }else if (lensMM==='6mm') {
       options = `
@@ -339,6 +359,9 @@ document.addEventListener("DOMContentLoaded", function () {
       nightVision = 'Dual'
     }else if(nightVision==='full-color'){
       nightVision = 'color'
+    }
+    else if(cameraType2.includes('long')){
+          cameraType2 = 'long-range';      
     }
 
     if(cameraType2){
@@ -409,10 +432,10 @@ document.addEventListener("DOMContentLoaded", function () {
         "nightVision": "Color / Dual"
       },
       {
-        "modelSelect": "MD-0120-M",
+        "modelSelect": "MD-O120-M",
         "bodyType": "metal",
         "cameraType2": null,
-        "housingType": "bullet",
+        "housingType": "dome",
         "nightVision": "Color / Dual"
       },
       {
@@ -521,9 +544,9 @@ document.addEventListener("DOMContentLoaded", function () {
         "nightVision": "Color / Dual"
       },
       {
-        "modelSelect": "MB-V180-M",
+        "modelSelect": "MB-VI80-M",
         "bodyType": "metal",
-        "cameraType2": "Long Range",
+        "cameraType2": "long-range",
         "housingType": "bullet",
         "nightVision": "Color / Dual"
       },
@@ -609,6 +632,13 @@ document.addEventListener("DOMContentLoaded", function () {
       options += `<option value="full-color">24 x 7 Full Color</option>`;
     }else if(cameraType2.toLowerCase().includes('ip-fisheye')){
       options += `<option value="smart-dual-light">Smart Dual Light</option>`;
+    }
+    else{
+      options += `<option value="">Select</option>
+                    <option value="normal">Normal</option>
+                    <option value="dark-light">Dark Light</option>
+                    <option value="smart-dual-light">Smart Dual Light</option>
+                    <option value="full-color">24 x 7 Full Color</option>`;
     }
     nightVision.innerHTML = "";
     nightVision.innerHTML = options;
@@ -813,6 +843,9 @@ housingTypeSelect.addEventListener("change", function () {
     updateLensMM();
     updatePCB()
     updatePoEOptions();
+  });
+  nightVisionSelect.addEventListener("change", () => {
+    updatePCB();
   });
 
   pcb.addEventListener("change", () => {
