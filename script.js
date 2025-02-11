@@ -426,14 +426,14 @@ document.addEventListener("DOMContentLoaded", function () {
         "nightVision": "Color / Dual"
       },
       {
-        "modelSelect": "MB-V150F-M",
+        "modelSelect": "MB-VI50F-M",
         "bodyType": "metal",
         "cameraType2": "Fish Eye",
         "housingType": "bullet",
         "nightVision": "Color / Dual"
       },
       {
-        "modelSelect": "MD-O120-M",
+        "modelSelect": "MD-OI20-M",
         "bodyType": "metal",
         "cameraType2": null,
         "housingType": "dome",
@@ -447,7 +447,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "nightVision": "Color / Dual"
       },
       {
-        "modelSelect": "MD-V150-M",
+        "modelSelect": "MD-VI50-M",
         "bodyType": "metal",
         "cameraType2": null,
         "housingType": "dome",
