@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const imgsDiv = document.getElementById("imgs").children;
   const bodyTypeSelect = document.getElementById('body-type')
   const nightVisionSelect = document.getElementById('night-vision')
+  const modelSelect = document.getElementById('model')
 
   // console.log(megapixelSelect)
 
@@ -759,53 +760,60 @@ document.addEventListener("DOMContentLoaded", function () {
     const imageDiv = document.getElementById("imgs");
     imageDiv.style.visibility = "visible";
 
+    const model = document.getElementById("model").value;
+    console.log(model);
+    
+
     const image1 = imageDiv.getElementsByTagName("img")[0];
-    const image2 = imageDiv.getElementsByTagName("img")[1];
-    if (housingType === "dome") {
-      const dom1 = "./img/dome.jpeg";
-      const dom2 = "./img/dom1.jpeg";
+    image1.src = `./img/${model}.png`;
+    console.log(image1);
+    
+    // const image2 = imageDiv.getElementsByTagName("img")[1];
+    // if (housingType === "dome") {
+    //   const dom1 = "./img/dome.jpeg";
+    //   const dom2 = "./img/dom1.jpeg";
 
-      if (imageDiv) {
-        if (image1) {
-          image1.src = dom1;
-          image2.src = dom2;
-        } else {
-          console.error("No <img> tag found in the #imgs div");
-        }
-      } else {
-        console.log("error");
-      }
-    } else {
-      const bullet1 = "./img/bullet1.jpeg";
-      const bullet2 = "./img/bullet2.jpeg";
+    //   if (imageDiv) {
+    //     if (image1) {
+    //       image1.src = dom1;
+    //       image2.src = dom2;
+    //     } else {
+    //       console.error("No <img> tag found in the #imgs div");
+    //     }
+    //   } else {
+    //     console.log("error");
+    //   }
+    // } else {
+    //   const bullet1 = "./img/bullet1.jpeg";
+    //   const bullet2 = "./img/bullet2.jpeg";
 
-      if (imageDiv) {
-        if (image1) {
-          image1.src = bullet1;
-          image2.src = bullet2;
-          //   console.log(imageDiv);
-        } else {
-          console.error("No <img> tag found in the #imgs div");
-        }
-      } else {
-        console.log("error");
-      }
-    }
-    const images = imageDiv.querySelectorAll("*");
-    // console.log(images)
+    //   if (imageDiv) {
+    //     if (image1) {
+    //       image1.src = bullet1;
+    //       image2.src = bullet2;
+    //       //   console.log(imageDiv);
+    //     } else {
+    //       console.error("No <img> tag found in the #imgs div");
+    //     }
+    //   } else {
+    //     console.log("error");
+    //   }
+    // }
+    // const images = imageDiv.querySelectorAll("*");
+    // // console.log(images)
 
-    images.forEach((child) => {
-      child.addEventListener("click", () => {
-        // Toggle between 'selected' and 'unselected' classes
-        if (child.classList.contains("unselected")) {
-          child.classList.remove("unselected");
-          // child.classList.add('selected');
-        } else {
-          child.classList.remove("selected");
-          child.classList.add("unselected");
-        }
-      });
-    });
+    // images.forEach((child) => {
+    //   child.addEventListener("click", () => {
+    //     // Toggle between 'selected' and 'unselected' classes
+    //     if (child.classList.contains("unselected")) {
+    //       child.classList.remove("unselected");
+    //       // child.classList.add('selected');
+    //     } else {
+    //       child.classList.remove("selected");
+    //       child.classList.add("unselected");
+    //     }
+    //   });
+    // });
   }
 
   function updateSelections(){
@@ -822,7 +830,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Event Listeners
 housingTypeSelect.addEventListener("change", function () {
-  imageRender();
+  // imageRender();
   updateCameraOptions();
   // updatePoEOptions();
   calculatePrice();
@@ -834,7 +842,7 @@ housingTypeSelect.addEventListener("change", function () {
     updateMegapixels(e);
     updatePoEOptions();
     calculatePrice();
-    imageRender();
+    // imageRender();
     updatePCB();
   });
 
@@ -860,7 +868,12 @@ housingTypeSelect.addEventListener("change", function () {
 
   bodyTypeSelect.addEventListener("change", () => {
     updateModel();
+    imageRender();
   })
+  modelSelect.addEventListener("change", () => {
+    imageRender();
+  })
+  
 
   document
     .querySelector("#update-btn")
