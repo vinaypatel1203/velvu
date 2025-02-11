@@ -384,28 +384,28 @@ document.addEventListener("DOMContentLoaded", function () {
         "nightVision": "Color / Dual"
       },
       {
-        "modelSelect": "MB-O120-M (Black)",
+        "modelSelect": "MB-OI20-M (Black)",
         "bodyType": "metal",
         "cameraType2": null,
         "housingType": "bullet",
         "nightVision": "Color / Dual"
       },
       {
-        "modelSelect": "MB-0120-M",
+        "modelSelect": "MB-0I20-M",
         "bodyType": "metal",
         "cameraType2": null,
         "housingType": "bullet",
         "nightVision": "Color / Dual"
       },
       {
-        "modelSelect": "MB-0130-M",
+        "modelSelect": "MB-OI30-M",
         "bodyType": "metal",
         "cameraType2": null,
         "housingType": "bullet",
         "nightVision": "Color / Dual"
       },
       {
-        "modelSelect": "MB-0140-M",
+        "modelSelect": "MB-OI40-M",
         "bodyType": "metal",
         "cameraType2": null,
         "housingType": "bullet",
@@ -475,7 +475,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "nightVision": "Color"
       },
       {
-        "modelSelect": "PB-0120-M",
+        "modelSelect": "PB-OI20-M",
         "bodyType": "Plastic",
         "cameraType2": null,
         "housingType": "bullet",
@@ -496,21 +496,21 @@ document.addEventListener("DOMContentLoaded", function () {
         "nightVision": "Color / Dual"
       },
       {
-        "modelSelect": "PD-0120-M",
+        "modelSelect": "PD-OI20-M",
         "bodyType": "Plastic",
         "cameraType2": null,
         "housingType": "dome",
         "nightVision": "Color"
       },
       {
-        "modelSelect": "PD-0130-M",
+        "modelSelect": "PD-OI30-M",
         "bodyType": "Plastic",
         "cameraType2": null,
         "housingType": "dome",
         "nightVision": "Color"
       },
       {
-        "modelSelect": "PD-0140-M",
+        "modelSelect": "PD-OI40-M",
         "bodyType": "Plastic",
         "cameraType2": null,
         "housingType": "dome",
